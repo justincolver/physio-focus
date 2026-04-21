@@ -538,6 +538,7 @@ p {
 }
 
 .about-shell {
+  width: min(calc(100% - 64px), 1600px);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 24px 60px rgba(15, 33, 59, 0.08);
   border-radius: 24px;
@@ -620,6 +621,7 @@ p {
 }
 
 .services-shell {
+  width: min(calc(100% - 64px), 1600px);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 24px 60px rgba(15, 33, 59, 0.08);
   border-radius: 24px;

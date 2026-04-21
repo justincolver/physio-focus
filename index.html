@@ -184,7 +184,7 @@
           <label for="services-tab-consultancy" class="services-tab-label">Consultancy</label>
         </div>
 
-        <div class="services-grid">
+        <div class="services-grid" id="services-grid">
           <article class="service-card" id="clients">
             <div class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 64 64">
@@ -307,22 +307,63 @@
   <script>
     (function () {
       const panels = document.getElementById("about-panels");
-      if (!panels) return;
+      if (panels) {
+        const dots = Array.from(document.querySelectorAll(".about-mobile-dots span"));
+        const slides = Array.from(panels.querySelectorAll(".about-panel"));
+        if (dots.length && slides.length) {
+          const updateActiveDot = () => {
+            const index = Math.round(panels.scrollLeft / panels.clientWidth);
+            dots.forEach((dot, dotIndex) => {
+              dot.classList.toggle("is-active", dotIndex === index);
+            });
+          };
 
-      const dots = Array.from(document.querySelectorAll(".about-mobile-dots span"));
-      const slides = Array.from(panels.querySelectorAll(".about-panel"));
-      if (!dots.length || !slides.length) return;
+          panels.addEventListener("scroll", updateActiveDot, { passive: true });
+          window.addEventListener("resize", updateActiveDot);
+          updateActiveDot();
+        }
+      }
 
-      const updateActiveDot = () => {
-        const index = Math.round(panels.scrollLeft / panels.clientWidth);
-        dots.forEach((dot, dotIndex) => {
-          dot.classList.toggle("is-active", dotIndex === index);
-        });
+      const servicesGrid = document.getElementById("services-grid");
+      const serviceTabs = [
+        document.getElementById("services-tab-clients"),
+        document.getElementById("services-tab-corporates"),
+        document.getElementById("services-tab-consultancy")
+      ];
+
+      if (!servicesGrid || serviceTabs.some((tab) => !tab)) return;
+
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      const getActiveTabIndex = () =>
+        serviceTabs.findIndex((tab) => tab.checked);
+
+      const setActiveTab = (index) => {
+        if (index < 0 || index >= serviceTabs.length) return;
+        serviceTabs[index].checked = true;
       };
 
-      panels.addEventListener("scroll", updateActiveDot, { passive: true });
-      window.addEventListener("resize", updateActiveDot);
-      updateActiveDot();
+      servicesGrid.addEventListener("touchstart", (event) => {
+        const touch = event.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      servicesGrid.addEventListener("touchend", (event) => {
+        const touch = event.changedTouches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+        const currentIndex = getActiveTabIndex();
+        if (deltaX < 0) {
+          setActiveTab(currentIndex + 1);
+        } else {
+          setActiveTab(currentIndex - 1);
+        }
+      }, { passive: true });
     })();
   </script>
 </body>

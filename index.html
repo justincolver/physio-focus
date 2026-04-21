@@ -187,12 +187,7 @@
         <div class="services-grid" id="services-grid">
           <article class="service-card" id="clients">
             <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <circle cx="38" cy="14" r="8"></circle>
-                <path d="M20 48c3-10 11-15 18-15s15 5 18 15"></path>
-                <path d="M10 27l8-6 4 5-8 6"></path>
-                <path d="M18 21l4 18"></path>
-              </svg>
+              <img src="images/kaz mobile.png" alt="" />
             </div>
             <h3 class="service-title">Clients</h3>
             <p class="service-copy">
@@ -204,12 +199,7 @@
 
           <article class="service-card" id="corporates">
             <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <rect x="14" y="18" width="36" height="26" rx="2"></rect>
-                <path d="M26 18v-6h12v6"></path>
-                <path d="M14 31h36"></path>
-                <path d="M29 31v5h6v-5"></path>
-              </svg>
+              <img src="images/kaz mobile.png" alt="" />
             </div>
             <h3 class="service-title">Corporates</h3>
             <p class="service-copy">
@@ -221,12 +211,7 @@
 
           <article class="service-card" id="consultancy">
             <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <path d="M8 24l24-10 24 10-24 10-24-10z"></path>
-                <path d="M18 30v10c0 4 8 8 14 8s14-4 14-8V30"></path>
-                <path d="M54 26v12"></path>
-                <path d="M54 38c0 2-1 4-3 5"></path>
-              </svg>
+              <img src="images/kaz mobile.png" alt="" />
             </div>
             <h3 class="service-title">Consultancy</h3>
             <p class="service-copy">
@@ -333,9 +318,6 @@
 
       if (!servicesGrid || serviceTabs.some((tab) => !tab)) return;
 
-      let touchStartX = 0;
-      let touchStartY = 0;
-
       const getActiveTabIndex = () =>
         serviceTabs.findIndex((tab) => tab.checked);
 
@@ -344,26 +326,25 @@
         serviceTabs[index].checked = true;
       };
 
-      servicesGrid.addEventListener("touchstart", (event) => {
-        const touch = event.touches[0];
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
-      }, { passive: true });
+      const syncServicesFromScroll = () => {
+        if (window.innerWidth > 640) return;
+        const index = Math.round(servicesGrid.scrollLeft / servicesGrid.clientWidth);
+        setActiveTab(index);
+      };
 
-      servicesGrid.addEventListener("touchend", (event) => {
-        const touch = event.changedTouches[0];
-        const deltaX = touch.clientX - touchStartX;
-        const deltaY = touch.clientY - touchStartY;
+      serviceTabs.forEach((tab, index) => {
+        tab.addEventListener("change", () => {
+          if (!tab.checked || window.innerWidth > 640) return;
+          servicesGrid.scrollTo({
+            left: servicesGrid.clientWidth * index,
+            behavior: "smooth"
+          });
+        });
+      });
 
-        if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
-
-        const currentIndex = getActiveTabIndex();
-        if (deltaX < 0) {
-          setActiveTab(currentIndex + 1);
-        } else {
-          setActiveTab(currentIndex - 1);
-        }
-      }, { passive: true });
+      servicesGrid.addEventListener("scroll", syncServicesFromScroll, { passive: true });
+      window.addEventListener("resize", syncServicesFromScroll);
+      syncServicesFromScroll();
     })();
   </script>
 </body>

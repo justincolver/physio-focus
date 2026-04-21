@@ -675,18 +675,21 @@ p {
 }
 
 .service-icon {
-  width: 72px;
-  height: 72px;
+  width: 100%;
+  max-width: 290px;
+  aspect-ratio: 16 / 10;
   display: grid;
   place-items: center;
   margin: 0 auto 18px;
+  overflow: hidden;
+  border-radius: 0;
 }
 
-.service-icon svg {
+.service-icon svg,
+.service-icon img {
   width: 100%;
   height: 100%;
-  stroke-width: 1.8;
-  fill: none;
+  object-fit: cover;
 }
 
 .service-card:nth-child(1) .service-icon svg {
@@ -1258,11 +1261,26 @@ p {
   }
 
   .services-grid {
-    display: block;
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .services-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .services-grid .service-card {
-    display: none;
+    display: flex;
+    width: 100%;
+    scroll-snap-align: start;
     margin-top: 0;
     position: relative;
     z-index: 1;
@@ -1271,15 +1289,10 @@ p {
     padding: 26px 20px 22px;
   }
 
-  #services-tab-clients:checked ~ .services-grid .service-card:nth-child(1),
-  #services-tab-corporates:checked ~ .services-grid .service-card:nth-child(2),
-  #services-tab-consultancy:checked ~ .services-grid .service-card:nth-child(3) {
-    display: flex;
-  }
-
   .services-grid .service-icon {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    max-width: 290px;
+    aspect-ratio: 16 / 10;
     margin-bottom: 14px;
   }
 

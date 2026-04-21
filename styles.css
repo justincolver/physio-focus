@@ -50,9 +50,13 @@ a {
   padding: 72px 0;
 }
 
+#about.section {
+  padding-top: 40px;
+}
+
 .eyebrow {
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 700;
@@ -390,13 +394,13 @@ p {
 
 .hero {
   position: relative;
-  min-height: 480px;
+  min-height: 560px;
   color: var(--white);
   display: grid;
   align-items: stretch;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(15, 33, 59, 0.80) 0%, rgba(15, 33, 59, 0.68) 28%, rgba(15, 33, 59, 0.30) 58%, rgba(15, 33, 59, 0.08) 100%),
+    linear-gradient(180deg, rgba(15, 33, 59, 0.44) 0%, rgba(15, 33, 59, 0.34) 100%),
     /* Placeholder image: replace with your final hero image at images/hero.png */
     url("images/hero.png") center/cover no-repeat;
 }
@@ -404,34 +408,54 @@ p {
 .hero-inner {
   width: min(calc(100% - 40px), var(--max));
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(320px, 520px);
+  display: flex;
   align-items: center;
-  padding: 48px 0;
+  justify-content: center;
+  padding: 72px 0;
+  text-align: center;
 }
 
 .hero h1 {
-  margin: 0 0 20px;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1.03;
-  letter-spacing: -0.03em;
-}
-
-.hero h1 .gold {
-  color: var(--gold);
+  margin: 0 0 18px;
+  font-size: clamp(2.6rem, 4.6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-family: "Avenir Next", Montserrat, "Segoe UI", sans-serif;
+  font-weight: 700;
+  max-width: 24ch;
+  text-shadow: 0 4px 18px rgba(15, 33, 59, 0.28);
 }
 
 .hero p {
-  font-size: 1.14rem;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 460px;
-  margin-bottom: 30px;
+  font-size: 1.32rem;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 760px;
+  margin: 0 auto 30px;
+  text-shadow: 0 3px 14px rgba(15, 33, 59, 0.22);
 }
 
 .hero-actions {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-copy {
+  display: grid;
+  justify-items: center;
+}
+
+.hero-cta {
+  min-width: 190px;
+  min-height: 56px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--navy);
+  border-color: rgba(15, 33, 59, 0.16);
+  box-shadow: 0 14px 32px rgba(15, 33, 59, 0.14);
+}
+
+.hero-cta:hover {
+  background: var(--white);
 }
 
 .subpage-hero {
@@ -523,12 +547,68 @@ p {
 }
 
 .about-copy .section-title {
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: 1.04rem;
+  line-height: 1.55;
+  font-weight: 700;
+  letter-spacing: 0;
   margin-bottom: 22px;
+}
+
+.about-subtitle {
+  margin: 0 0 10px;
+  color: var(--navy-soft);
+  font-size: 1.08rem;
+  font-weight: 500;
+}
+
+.about-copy p {
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.about-details {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.about-detail-row {
+  display: block;
+}
+
+.about-detail-label {
+  display: inline;
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.about-detail-copy {
+  display: inline;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.about-cta {
+  margin-top: 24px;
+  align-self: flex-start;
 }
 
 .services {
   padding-top: 8px;
+}
+
+.services .section-intro .section-title {
+  font-size: 1.04rem;
+  line-height: 1.55;
+  font-weight: 700;
+  letter-spacing: 0;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .services-grid {
@@ -888,16 +968,15 @@ p {
   }
 
   .hero {
-    min-height: 420px;
+    min-height: 500px;
     background:
-      linear-gradient(180deg, rgba(15, 33, 59, 0.76) 0%, rgba(15, 33, 59, 0.58) 42%, rgba(15, 33, 59, 0.32) 100%),
+      linear-gradient(180deg, rgba(15, 33, 59, 0.52) 0%, rgba(15, 33, 59, 0.38) 100%),
       /* Placeholder image: replace with your final hero image at images/hero.png */
       url("images/hero.png") center/cover no-repeat;
   }
 
   .hero-inner {
-    grid-template-columns: 1fr;
-    padding: 40px 0;
+    padding: 64px 0;
   }
 
   .subpage-hero {
@@ -1000,7 +1079,8 @@ p {
   }
 
   .hero h1 {
-    font-size: clamp(2.35rem, 12vw, 4rem);
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    max-width: 20ch;
   }
 
   .nav-cta {

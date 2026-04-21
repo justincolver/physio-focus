@@ -102,45 +102,86 @@
     </section>
 
     <section class="section" id="about">
-      <div class="container about-grid">
-        <!-- About image placeholder: replace images/kaz.png if needed -->
-        <div class="about-image" aria-hidden="true"></div>
+      <div class="container about-shell">
+        <div class="about-grid">
+          <!-- About image placeholder: replace images/kaz.png if needed -->
+          <div class="about-image" aria-hidden="true"></div>
 
-        <div class="about-copy">
-          <div class="eyebrow">About Kaz</div>
-          <p class="about-subtitle">Specialist Physiotherapist &amp; Movement Coach</p>
-          <p>
-            Kaz is a qualified physiotherapist who helps people move better,
-            feel stronger and recover with confidence. Her approach combines
-            hands-on treatment, practical exercise guidance and clear advice
-            that fits real life.
-          </p>
-          <div class="about-details">
-            <div class="about-detail-row">
-              <span class="about-detail-label">Specialisms:</span>
-              <span class="about-detail-copy">Musculoskeletal physiotherapy, pain management and movement rehabilitation</span>
+          <div class="about-copy">
+            <div class="eyebrow">About Kaz</div>
+            <div class="about-panels" id="about-panels">
+              <div class="about-panel">
+                <p class="about-subtitle">Specialist Physiotherapist &amp; Movement Coach</p>
+                <p class="about-intro">
+                  Helping people build confidence, restore movement and feel stronger in everyday life.
+                </p>
+                <p>
+                  Kaz is a qualified physiotherapist who helps people move better,
+                  feel stronger and recover with confidence. Her approach combines
+                  hands-on treatment, practical exercise guidance and clear advice
+                  that fits real life.
+                </p>
+              </div>
+              <div class="about-panel">
+                <div class="about-details">
+                  <div class="about-detail-row">
+                    <span class="about-detail-label">Specialisms:</span>
+                    <span class="about-detail-copy">Musculoskeletal physiotherapy, pain management and movement rehabilitation</span>
+                  </div>
+                  <div class="about-detail-row">
+                    <span class="about-detail-label">Expertise:</span>
+                    <span class="about-detail-copy">Exercise guidance, strength-based recovery and practical return-to-activity support</span>
+                  </div>
+                  <div class="about-detail-row">
+                    <span class="about-detail-label">Credentials:</span>
+                    <span class="about-detail-copy">Qualified physiotherapist with a calm, evidence-based and highly personal approach to care</span>
+                  </div>
+                </div>
+                <a href="about.html" class="btn btn-primary about-cta">Learn more about Kaz</a>
+              </div>
             </div>
-            <div class="about-detail-row">
-              <span class="about-detail-label">Expertise:</span>
-              <span class="about-detail-copy">Exercise guidance, strength-based recovery and practical return-to-activity support</span>
-            </div>
-            <div class="about-detail-row">
-              <span class="about-detail-label">Credentials:</span>
-              <span class="about-detail-copy">Qualified physiotherapist with a calm, evidence-based and highly personal approach to care</span>
+            <div class="about-mobile-dots" aria-hidden="true">
+              <span class="is-active"></span>
+              <span></span>
             </div>
           </div>
-          <a href="about.html" class="btn btn-primary about-cta">Learn more about Kaz</a>
         </div>
       </div>
     </section>
 
     <section class="section services" id="services">
-      <div class="container">
+      <div class="container services-shell">
         <div class="section-intro">
           <div class="eyebrow">Services</div>
           <h2 class="section-title">
             Support tailored to who you are and what you need.
           </h2>
+        </div>
+
+        <input
+          type="radio"
+          name="services-tab"
+          id="services-tab-clients"
+          class="services-tab-input"
+          checked
+        />
+        <input
+          type="radio"
+          name="services-tab"
+          id="services-tab-corporates"
+          class="services-tab-input"
+        />
+        <input
+          type="radio"
+          name="services-tab"
+          id="services-tab-consultancy"
+          class="services-tab-input"
+        />
+
+        <div class="services-tabs" aria-label="Services tabs">
+          <label for="services-tab-clients" class="services-tab-label">Clients</label>
+          <label for="services-tab-corporates" class="services-tab-label">Corporates</label>
+          <label for="services-tab-consultancy" class="services-tab-label">Consultancy</label>
         </div>
 
         <div class="services-grid">
@@ -263,5 +304,26 @@
       </div>
     </div>
   </footer>
+  <script>
+    (function () {
+      const panels = document.getElementById("about-panels");
+      if (!panels) return;
+
+      const dots = Array.from(document.querySelectorAll(".about-mobile-dots span"));
+      const slides = Array.from(panels.querySelectorAll(".about-panel"));
+      if (!dots.length || !slides.length) return;
+
+      const updateActiveDot = () => {
+        const index = Math.round(panels.scrollLeft / panels.clientWidth);
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+        });
+      };
+
+      panels.addEventListener("scroll", updateActiveDot, { passive: true });
+      window.addEventListener("resize", updateActiveDot);
+      updateActiveDot();
+    })();
+  </script>
 </body>
 </html>

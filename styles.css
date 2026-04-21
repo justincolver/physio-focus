@@ -52,6 +52,7 @@ a {
 
 #about.section {
   padding-top: 40px;
+  padding-bottom: 20px;
 }
 
 .eyebrow {
@@ -536,6 +537,14 @@ p {
   align-items: center;
 }
 
+.about-shell {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 60px rgba(15, 33, 59, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 40px;
+}
+
 .about-image {
   border-radius: 0;
   overflow: hidden;
@@ -564,6 +573,15 @@ p {
 .about-copy p {
   font-size: 0.96rem;
   line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.about-panels {
+  display: block;
+}
+
+.about-mobile-dots {
+  display: none;
 }
 
 .about-details {
@@ -598,7 +616,14 @@ p {
 }
 
 .services {
-  padding-top: 8px;
+  padding-top: 0;
+}
+
+.services-shell {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 60px rgba(15, 33, 59, 0.08);
+  border-radius: 24px;
+  padding: 40px;
 }
 
 .services .section-intro .section-title {
@@ -609,6 +634,22 @@ p {
   max-width: none;
   margin-left: auto;
   margin-right: auto;
+}
+
+.services-tabs {
+  display: none;
+}
+
+.services-tab-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.services-tab-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .services-grid {
@@ -1107,8 +1148,153 @@ p {
     min-height: 280px;
   }
 
+  .about-shell {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .about-image {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    background-image: url("images/kaz mobile.png");
+    background-position: center top;
+  }
+
+  .about-mobile-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 14px 0 12px;
+  }
+
+  .about-mobile-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(15, 33, 59, 0.18);
+  }
+
+  .about-mobile-dots span.is-active {
+    background: var(--green);
+  }
+
+  .about-panels {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .about-panels::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-panel {
+    scroll-snap-align: start;
+    align-self: start;
+  }
+
+  .about-panel .about-details {
+    margin-top: 0;
+  }
+
+  .about-panel .about-cta {
+    display: none;
+  }
+
   .client-contact-section {
     padding: 16px 0 8px;
+  }
+
+  .services-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .services-shell {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .services.section {
+    padding-top: 24px;
+  }
+
+  #about.section {
+    padding-bottom: 8px;
+  }
+
+  .services-tab-label {
+    min-height: 38px;
+    padding: 0 6px 8px;
+    border: none;
+    border-bottom: 1px solid rgba(15, 33, 59, 0.12);
+    background: transparent;
+    color: var(--navy);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  #services-tab-clients:checked ~ .services-tabs label[for="services-tab-clients"],
+  #services-tab-corporates:checked ~ .services-tabs label[for="services-tab-corporates"],
+  #services-tab-consultancy:checked ~ .services-tabs label[for="services-tab-consultancy"] {
+    background: transparent;
+    color: var(--green-dark);
+    border-color: var(--green);
+    position: relative;
+    z-index: 3;
+  }
+
+  .services-grid {
+    display: block;
+  }
+
+  .services-grid .service-card {
+    display: none;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(15, 33, 59, 0.08);
+    background: rgba(248, 246, 243, 0.72);
+    padding: 26px 20px 22px;
+  }
+
+  #services-tab-clients:checked ~ .services-grid .service-card:nth-child(1),
+  #services-tab-corporates:checked ~ .services-grid .service-card:nth-child(2),
+  #services-tab-consultancy:checked ~ .services-grid .service-card:nth-child(3) {
+    display: flex;
+  }
+
+  .services-grid .service-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 14px;
+  }
+
+  .services-grid .service-title {
+    font-size: 1.45rem;
+    margin-bottom: 12px;
+  }
+
+  .services-grid .service-copy {
+    margin-bottom: 20px;
+    max-width: 26ch;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .services-grid .service-card .btn {
+    min-height: 48px;
   }
 
   .client-contact-box {

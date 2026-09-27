@@ -45,3 +45,28 @@
 @media(max-width:1100px) and (min-width:901px){.about-intro-copy{padding:42px 48px}.about-intro-copy h1{font-size:54px}.about-intro-copy>p:not(.section-label){font-size:16px}.about-stats{margin-top:32px}.about-stats div,.about-stats div:first-child{padding-left:20px;padding-right:20px}.about-stats div:first-child{padding-left:0}.about-stats strong{font-size:29px}}
 @media(max-width:900px){.about-intro{grid-template-columns:1fr;height:auto}.about-intro-photo{height:auto;aspect-ratio:4/3}.about-intro-photo img{object-position:center 28%}.about-intro-copy{padding:56px clamp(24px,7vw,56px) 62px}.about-intro-copy .section-label{font-size:13px;margin-bottom:16px}.about-intro-copy h1{font-size:clamp(45px,8vw,60px);line-height:1.04;margin-bottom:24px}.about-intro-copy>p:not(.section-label){font-size:17px;line-height:1.55}.about-stats{margin-top:38px}.about-stats strong{font-size:30px}.about-stats span{font-size:11px}}
 @media(max-width:560px){.about-intro-photo{height:auto;aspect-ratio:5/4}.about-intro-copy{padding:44px 20px 50px}.about-intro-copy h1{font-size:42px;letter-spacing:-.6px}.about-intro-copy h1 br{display:none}.about-stats{grid-template-columns:1fr;gap:0;margin-top:32px}.about-stats div,.about-stats div:first-child{padding:16px 0;border-right:0;border-bottom:1px solid #cfdad5}.about-stats div:last-child{border-bottom:0}.about-stats strong{font-size:29px}.about-stats span{font-size:12px;margin-top:4px}}
+
+/* Concise About page sections below the hero. */
+.about-page .about-approach{background:#fff;padding:92px 0}
+.about-page .about-approach .about-split{grid-template-columns:minmax(0,1.1fr) minmax(380px,.9fr);gap:88px;max-width:1240px}
+.about-page .about-prose{max-width:620px}
+.about-page .about-prose h2{font:clamp(44px,4.3vw,60px)/1.08 var(--serif);margin:10px 0 28px;letter-spacing:-.7px}
+.about-page .about-prose>p:not(.section-label){font-size:16px;line-height:1.6;margin:0 0 20px}
+.about-page .about-approach .about-action-photo{height:520px;aspect-ratio:1/1.05}
+.about-page .about-approach .about-action-photo img{object-position:90% center;border:0;border-radius:0;box-shadow:none}
+.about-page .about-experience{background:var(--cream);padding:65px 0 68px}
+.about-page .about-section-heading{text-align:left;max-width:1080px;margin:0 auto}
+.about-page .about-section-heading h2{font:clamp(39px,3.8vw,52px)/1.1 var(--serif);margin:8px 0 38px}
+.about-page .qualification-grid{max-width:1080px}
+.about-page .qualification-grid article{gap:22px;padding:22px 24px;border-bottom:1px solid #cad7d1;background:none;box-shadow:none}
+.about-page .qualification-grid article:nth-child(odd){border-right:1px solid #cad7d1}
+.about-page .qualification-grid article:nth-child(n+3){border-bottom:0}
+.about-page .qualification-icon{width:48px;height:48px;background:transparent;border-radius:0;font-size:27px;color:var(--green-dark)}
+.about-page .qualification-grid h3{font-size:22px;line-height:1.2;margin-bottom:4px}
+.about-page .qualification-grid p{font-size:12px;line-height:1.45}
+.about-page .about-assessment{padding:48px 0 43px;background:linear-gradient(90deg,#075044ee,#075044df),url("assets/physio-hero.png") center 48%/cover}
+.about-page .about-assessment h2{font:clamp(39px,4vw,53px)/1.06 var(--serif);margin:0 0 13px}
+.about-page .about-assessment>div>p:not(.eyebrow){font-size:15px}
+.about-page .about-assessment .button{min-height:48px;margin:20px 0 10px}
+@media(max-width:900px){.about-page .about-approach{padding:68px 0}.about-page .about-approach .about-split{grid-template-columns:1fr;gap:38px}.about-page .about-prose{max-width:none}.about-page .about-approach .about-action-photo{width:100%;height:auto;aspect-ratio:4/3}.about-page .about-experience{padding:58px 0}.about-page .about-section-heading{max-width:none}.about-page .qualification-grid article,.about-page .qualification-grid article:nth-child(odd),.about-page .qualification-grid article:nth-child(n+3){border-right:0;border-bottom:1px solid #cad7d1}.about-page .qualification-grid article:last-child{border-bottom:0}.about-page .about-assessment{padding:48px 0 44px}}
+@media(max-width:560px){.about-page .about-approach{padding:55px 0}.about-page .about-prose h2{font-size:42px}.about-page .about-prose>p:not(.section-label){font-size:15px;line-height:1.58;margin-bottom:17px}.about-page .about-approach .about-action-photo{aspect-ratio:1/1}.about-page .about-experience{padding:50px 0}.about-page .about-section-heading h2{font-size:39px;margin-bottom:28px}.about-page .qualification-grid article{padding:19px 0}.about-page .qualification-icon{width:42px;height:42px}.about-page .qualification-grid h3{font-size:20px}.about-page .about-assessment{padding:43px 0 40px}.about-page .about-assessment h2{font-size:40px}}

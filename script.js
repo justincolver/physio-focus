@@ -1,6 +1,16 @@
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('#nav');
 
+document.querySelectorAll('.phone-pill').forEach(phoneLink => {
+  phoneLink.href = 'tel:07708846424';
+  phoneLink.innerHTML = '<span>☎</span>07708 846 424';
+});
+
+document.querySelectorAll('a[href^="mailto:hello@thephysiofocus.co.uk"]').forEach(emailLink => {
+  emailLink.href = emailLink.href.replace('hello@thephysiofocus.co.uk', 'hello.thephysiofocus@gmail.com');
+  emailLink.innerHTML = emailLink.innerHTML.replaceAll('hello@thephysiofocus.co.uk', 'hello.thephysiofocus@gmail.com');
+});
+
 menuButton.addEventListener('click', () => {
   const open = nav.classList.toggle('open');
   menuButton.setAttribute('aria-expanded', String(open));
@@ -34,8 +44,8 @@ if (contactForm) {
     const firstName = formData.get('firstName').trim();
     const lastName = formData.get('lastName').trim();
     const email = formData.get('email').trim();
-    const phone = formData.get('phone').trim() || 'Not provided';
-    const enquiryType = formData.get('enquiryType');
+    const phone = (formData.get('phone') || '').trim() || 'Not provided';
+    const enquiryType = formData.get('enquiryType') || 'Website enquiry';
     const message = formData.get('message').trim();
     const subject = `Website enquiry: ${enquiryType} — ${firstName} ${lastName}`;
     const body = [
@@ -48,7 +58,7 @@ if (contactForm) {
       message
     ].join('\n');
 
-    const mailtoUrl = `mailto:hello@thephysiofocus.co.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:hello.thephysiofocus@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     document.querySelector('#form-status').textContent = 'Your email app is opening with your enquiry ready to send.';
     window.location.href = mailtoUrl;
   });

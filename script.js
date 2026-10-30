@@ -1,6 +1,17 @@
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('#nav');
 
+const navigationLabels = {
+  'clients.html': 'For Individuals',
+  'professional-development.html': 'For Professionals',
+  'corporates.html': 'For Organisations'
+};
+
+Object.entries(navigationLabels).forEach(([page, label]) => {
+  const link = nav.querySelector(`a[href="${page}"]`);
+  if (link) link.textContent = label;
+});
+
 document.querySelectorAll('.phone-pill').forEach(phoneLink => {
   phoneLink.href = 'tel:07708846424';
   phoneLink.innerHTML = '<span>☎</span>07708 846 424';
